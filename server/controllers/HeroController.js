@@ -79,23 +79,31 @@ class HeroController {
 
    // get all hero
     static getAllHero = async (req, res) => {
-        try {
-            const hero = await Hero.findOne();
-            if (!hero) {
-                return res.status(404).json({
-                    success: false,
-                    message: "Hero section not found",
-                });
-            }
-            res.status(200).json({
-                success: true,
-                message: "Hero section fetched successfully",
-                hero,
+    try {
+        const hero = await Hero.findOne();
+
+        if (!hero) {
+            return res.status(404).json({
+                success: false,
+                message: "Hero section not found",
             });
-        } catch (error) {
-            console.log(error);
         }
-    };
+
+        res.status(200).json({
+            success: true,
+            message: "Hero section fetched successfully",
+            hero,
+        });
+
+    } catch (error) {
+        console.log(error);
+
+        res.status(500).json({
+            success: false,
+            message: error.message
+        });
+    }
+};
 
     // single hero  
     static getSingleHero = async (req, res) => {
