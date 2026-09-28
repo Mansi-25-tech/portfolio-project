@@ -13,7 +13,6 @@ const cors = require("cors");
 app.use(
     cors({
         origin: [
-            "http://localhost:5173",
             "https://cheery-sorbet-0eb6c3.netlify.app"
         ],
         credentials: true
